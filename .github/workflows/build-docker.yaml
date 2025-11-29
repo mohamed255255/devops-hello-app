@@ -1,0 +1,22 @@
+name: Build and publish image to Docker Hub
+
+on:
+  # Allows you to run this workflow manually from the Actions tab in GitHub
+  workflow_dispatch:
+
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        # Action to pull your code into the runner
+        uses: actions/checkout@v4
+
+      # Build the Docker image
+      - name: Build Docker image
+        # Note: You should be sure that the Dockerfile is correctly located at ./DEVOPS-HELLO-APP
+        run: docker build ./DEVOPS-HELLO-APP -t mohamed255255/devops-practice:latest
+
+      # Push the Docker image to Docker Hub
+      - name: Push Docker image to Docker Hub
+        run: docker push mohamed255255/devops-practice:latest
