@@ -21,7 +21,12 @@ jobs:
       - name: Build Spring Boot JAR
         run: mvn -B package
 
-        
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       # Build the Docker image
       - name: Build Docker image
         # Note: You should be sure that the Dockerfile is correctly located at ./DEVOPS-HELLO-APP
